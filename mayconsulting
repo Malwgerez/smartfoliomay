@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Profesional - May Avellaneda</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .header .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .portfolio-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .portfolio-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-left: 60px;
+            margin-top: -15px;
+        }
+
+        .items-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .items-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .items-list li:hover {
+            background: rgba(102, 126, 234, 0.05);
+            padding-left: 10px;
+            border-radius: 8px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .items-list li:last-child {
+            border-bottom: none;
+        }
+
+        .item-icon {
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .items-list li:hover .item-icon {
+            transform: scale(1.5);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .item-text {
+            color: #34495e;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-left: auto;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            margin: 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .portfolio-section {
+            animation: fadeInUp 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .portfolio-section:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-section:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-section:nth-child(3) { animation-delay: 0.3s; }
+        .portfolio-section:nth-child(4) { animation-delay: 0.4s; }
+        .portfolio-section:nth-child(5) { animation-delay: 0.5s; }
+        .portfolio-section:nth-child(6) { animation-delay: 0.6s; }
+        .portfolio-section:nth-child(7) { animation-delay: 0.7s; }
+        .portfolio-section:nth-child(8) { animation-delay: 0.8s; }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .section-icon {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        .highlight-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="container">
+        <header class="header">
+            <h1>May Avellaneda</h1>
+            <p class="subtitle">Especialista en Organización Digital & Automatización</p>
+            <p class="description">Transformo procesos empresariales mediante herramientas digitales, automatización inteligente y diseño de contenido estratégico. Mi enfoque integral combina organización, tecnología y creatividad para potenciar la productividad.</p>
+        </header>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-section highlight-section">
+                <div class="section-header">
+                    <div class="section-icon">👋</div>
+                    <div>
+                        <h2 class="section-title">Presentación General</h2>
+                        <p class="section-subtitle">Mi perfil profesional completo</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">CV funcional (1 hoja)</span><span class="status-badge">PDF</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Carta de presentación editable</span><span class="status-badge">DOCX</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Quién soy y qué ofrezco (pitch personal)</span><span class="status-badge">VIDEO</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Imagen de marca / logotipo</span><span class="status-badge">PNG</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section">
+                <div class="section-header">
+                    <div class="section-icon">🗂️</div>
+                    <div>
+                        <h2 class="section-title">Organización Digital</h2>
+                        <p class="section-subtitle">Caso de éxito: TripCo</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Capturas antes/después estructura Drive</span><span class="status-badge">IMG</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Documento explicativo de estructura</span><span class="status-badge">PDF</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Manual de uso interno</span><span class="status-badge">GUIDE</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section">
+                <div class="section-header">
+                    <div class="section-icon">⚡</div>
+                    <div>
+                        <h2 class="section-title">Automatización Light</h2>
+                        <p class="section-subtitle">Procesos inteligentes y eficientes</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Formulario Google Forms de ejemplo</span><span class="status-badge">LIVE</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Planilla con automatización básica</span><span class="status-badge">SHEETS</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Caso práctico: flujo automatizado</span><span class="status-badge">PDF</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section">
+                <div class="section-header">
+                    <div class="section-icon">📋</div>
+                    <div>
+                        <h2 class="section-title">Kits Institucionales</h2>
+                        <p class="section-subtitle">Documentos empresariales listos</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Kit de bienvenida editable (TripCo)</span><span class="status-badge">DOCX</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Actas o documentos modelo</span><span class="status-badge">DOCS</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Plantillas de mails empresariales</span><span class="status-badge">HTML</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Propuesta comercial editable</span><span class="status-badge">PPTX</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section highlight-section">
+                <div class="section-header">
+                    <div class="section-icon">🎨</div>
+                    <div>
+                        <h2 class="section-title">Diseño de Contenido Visual</h2>
+                        <p class="section-subtitle">Creatividad con propósito estratégico</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Fichas visuales (Canva)</span><span class="status-badge">PDF</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Ebook / guía descargable (10 páginas)</span><span class="status-badge">EBOOK</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Presentación institucional editable</span><span class="status-badge">SLIDES</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Carruseles para RRSS + editables</span><span class="status-badge">JPG</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section">
+                <div class="section-header">
+                    <div class="section-icon">📚</div>
+                    <div>
+                        <h2 class="section-title">Recursos Educativos</h2>
+                        <p class="section-subtitle">Formación y capacitación efectiva</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Plantilla de clase o guía</span><span class="status-badge">DOCX</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Ficha descargable para formación</span><span class="status-badge">PDF</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Google Site o Intranet simulada</span><span class="status-badge">SITE</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Mini video explicativo</span><span class="status-badge">MP4</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section highlight-section">
+                <div class="section-header">
+                    <div class="section-icon">🤖</div>
+                    <div>
+                        <h2 class="section-title">IA Aplicada</h2>
+                        <p class="section-subtitle">Inteligencia artificial en procesos</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Informe generado con IA</span><span class="status-badge">PDF</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Kit de prompts para emprendedores</span><span class="status-badge">GUIDE</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Devolución automatizada</span><span class="status-badge">FORM</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Cómo uso IA en procesos</span><span class="status-badge">DOC</span></li>
+                </ul>
+            </div>
+
+            <div class="portfolio-section">
+                <div class="section-header">
+                    <div class="section-icon">⭐</div>
+                    <div>
+                        <h2 class="section-title">Testimonios y Resultados</h2>
+                        <p class="section-subtitle">El impacto real de mi trabajo</p>
+                    </div>
+                </div>
+                <ul class="items-list">
+                    <li><div class="item-icon"></div><span class="item-text">Capturas de feedback real</span><span class="status-badge">IMG</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Documento con testimonios editables</span><span class="status-badge">DOCX</span></li>
+                    <li><div class="item-icon"></div><span class="item-text">Audios o videos breves</span><span class="status-badge">MEDIA</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="color: white; margin-bottom: 20px; font-size: 2rem;">¿Listo para transformar tu negocio?</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.1rem;">Hablemos sobre cómo puedo ayudarte a optimizar tus procesos y potenciar tu productividad</p>
+            <a href="mailto:may@example.com" class="cta-button">📧 Contactar ahora</a>
+            <a href="#" class="cta-button">📋 Descargar portafolio completo</a>
+            
+            <div class="contact-info">
+                <p style="margin-top: 30px; font-size: 1.1rem;">
+                    <a href="mailto:mayradavellaneda@gmail.com">mayradavellaneda@gmail.com</a> |
+                    <a href="tel:+5491137606345">+54 9 11 3760-6345</a> |
+                    <a href="https://linkedin.com/in/mayra-denise-avellaneda" target="_blank">LinkedIn</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Añadir interactividad suave
+        document.querySelectorAll('.items-list li').forEach(item => {
+            item.addEventListener('click', function() {
+                const badge = this.querySelector('.status-badge');
+                const originalText = badge.textContent;
+                badge.textContent = '✓ Visto';
+                badge.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                
+                setTimeout(() => {
+                    badge.textContent = originalText;
+                    badge.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
+                }, 2000);
+            });
+        });
+
+        // Efecto de parallax suave en elementos flotantes
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const elements = document.querySelectorAll('.floating-element');
+            
+            elements.forEach((element, index) => {
+                const speed = (index + 1) * 0.5;
+                element.style.transform = `translateY(${scrollY * speed}px) rotate(${scrollY * 0.1}deg)`;
+            });
+        });
+
+        // Animación de entrada para las secciones
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.portfolio-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
